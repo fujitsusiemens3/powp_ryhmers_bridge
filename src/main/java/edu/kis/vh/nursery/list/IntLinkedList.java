@@ -2,7 +2,9 @@ package edu.kis.vh.nursery.list;
 
 public class IntLinkedList {
 
+	private static final int EMPTY_LIST = -1;
 	private static final int VALUE_IS_EMPTY = -1;
+	private int total = EMPTY_LIST;
 	private Node last;
 	private int i;
 
@@ -36,6 +38,36 @@ public class IntLinkedList {
 		int ret = last.getValue();
 		last = last.getPrev();
 		return ret;
+	}
+	
+	public int getTotal() {
+		return total;
+	}
+	
+	public void countIn(int in) {
+		if (!isFull()) {
+//			numbers[++total] = in;
+			++total;
+			push(in);
+		}
+	}
+
+	public boolean callCheck() {
+		return total == EMPTY_LIST;
+	}
+
+
+	public int peekaboo() {
+		if (callCheck())
+			return EMPTY_LIST;
+		return last.getValue();
+	}
+
+	public int countOut() {
+		if (callCheck())
+			return EMPTY_LIST;
+		--total;
+		return last.getValue();
 	}
 
 	private class Node {
